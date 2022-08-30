@@ -7,6 +7,14 @@ function showCommand(text) {
     result.innerHTML = `<p> <b>COMMAND:</b> <br> <br> ${command} </p>`;
 }
 
+function openDocument(text) {
+    const command = generateCommand(text);
+    let w = window.open();
+    w.document.open();
+    w.document.write(command);
+    w.document.close();
+}
+
 function downloadCommands(text) {
     const command = generateCommand(text);
     let element = document.createElement('a');
@@ -30,7 +38,7 @@ function receiveEvent(event) {
     event.preventDefault();
     const name = form.querySelector('#name');
 
-    downloadCommands(name.value);
+    openDocument(name.value);
 }
 
 form.addEventListener('submit', receiveEvent);
